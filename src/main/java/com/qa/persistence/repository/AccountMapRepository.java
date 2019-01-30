@@ -1,8 +1,8 @@
 package com.qa.persistence.repository;
 
-import java.util.ArrayList;
+
 import java.util.HashMap;
-import java.util.List;
+
 import java.util.Map;
 
 import com.qa.persistence.domain.Account;
@@ -12,6 +12,7 @@ import util.JSONUtil;
 public class AccountMapRepository implements AccountRepository{
 	JSONUtil jsonutil = new JSONUtil();
 	Map<Long, Account> accountMap = new HashMap<>();
+	
 	
 	public String getAllAccounts() {
 		String accounts = "";
@@ -23,7 +24,7 @@ public class AccountMapRepository implements AccountRepository{
 	}
 
 	public String createAccount(String account) {
-//		jsonutil.getObjectForJSON(account, accountMap);
+
 		
 		Account acc = jsonutil.getObjectForJSON(account, Account.class);
 		
@@ -51,14 +52,27 @@ public class AccountMapRepository implements AccountRepository{
 	}
 	public Account getAccountByID(Long id) {
 		
-		Account account = accountMap.get(id);
-		return account;
+		return accountMap.get(id);
+		
 		
 		
 	}
 	
 	public int getRepoSize() {
 		return accountMap.size();
+	}
+	
+	public int firstNameCount(String name) {
+		int count = 0;
+		for(Account acc: accountMap.values()) {
+			
+			if(acc.getFirstName().equals(name)) {
+			
+			count++;
+			}
+				
+		}
+		return count;
 	}
 
 }

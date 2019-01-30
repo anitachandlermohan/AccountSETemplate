@@ -13,21 +13,33 @@ import com.qa.persistence.repository.AccountMapRepository;
 import util.JSONUtil;
 
 public class AccountServiceTest {
-	AccountMapRepository repo ;
+	private AccountMapRepository repo ;
 	JSONUtil jsonutil = new JSONUtil();
-	Account catdogsaccount = new Account("Cat", "Dog", 1234L);
-	String catdogAccountString = jsonutil.getJSONForObject(catdogsaccount);
-	Account edsaccount = new Account("Ed", "Eddy", 12345L);
-	String edsAccountString = jsonutil.getJSONForObject(edsaccount);
-
+	private Account catdogsaccount;
+	private String catdogAccountString;
+	private Account edsaccount;
+	private String edsAccountString;
+	private Account bob1sAccount;
+	private String bob1sAccountString;
+	private Account bob2sAccount;
+	private String bob2sAccountString;
+	private Account bob3sAccount;
+	
+	
 	@Before 
 	public void setup() {
-		
 		repo = new AccountMapRepository();
+		catdogsaccount = new Account("Cat", "Dog", 1234L);
+		catdogAccountString = jsonutil.getJSONForObject(catdogsaccount);
+		edsaccount = new Account("Ed", "Eddy", 12345L);
+		edsAccountString = jsonutil.getJSONForObject(edsaccount);
+		bob1sAccount = new Account("Bob", "Bobford", 2333L);
+		bob1sAccountString = jsonutil.getJSONForObject(bob1sAccount);
+		bob2sAccount = new Account("Bob", "Bobbington", 333L);
+		bob2sAccountString = jsonutil.getJSONForObject(bob2sAccount);
+		bob3sAccount = new Account("Bob", "Bobton", 445L);
 		
 		
-		
-	
 	}
 	
 	@Test
@@ -55,7 +67,7 @@ public class AccountServiceTest {
 	public void removeAccountTest() {
 		repo.createAccount(edsAccountString);
 		repo.deleteAccount(edsaccount.getAccountNumber());
-		assertEquals("account not removed", repo.getRepoSize(), 0);
+		assertEquals("account not removed", 0, repo.getRepoSize());
 		
 		
 		 
@@ -102,17 +114,24 @@ public class AccountServiceTest {
 
 	@Test
 	public void getCountForFirstNamesInAccountWhenZeroOccurances() {
+		assertEquals("count is not 0", 0, repo.firstNameCount("Bob"));
 		
 	}
 	
 	@Test
 	public void getCountForFirstNamesInAccountWhenOne() {
+		repo.createAccount(edsAccountString);
+		repo.createAccount(bob1sAccountString);
+		assertEquals("count should be 1", 1, repo.firstNameCount("Bob"));
 		
 	}
 
 	@Test
 	public void getCountForFirstNamesInAccountWhenMult() {
-		
+		repo.createAccount(bob1sAccountString);
+		repo.createAccount(bob2sAccountString);
+		repo.createAccount(catdogAccountString);
+		assertEquals("count should be 2", 2, repo.firstNameCount("Bob"));
 	}
 
 }
