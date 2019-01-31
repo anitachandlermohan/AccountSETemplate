@@ -2,9 +2,12 @@ package com.qa.MapTests;
 
 import static org.junit.Assert.*;
 
+import javax.inject.Inject;
+
 import org.json.simple.JSONObject;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import com.qa.persistence.domain.Account;
@@ -13,8 +16,8 @@ import com.qa.persistence.repository.AccountMapRepository;
 import util.JSONUtil;
 
 public class AccountServiceTest {
-	private AccountMapRepository repo ;
-	JSONUtil jsonutil = new JSONUtil();
+	private AccountMapRepository repo;
+	private JSONUtil jsonutil;
 	private Account catdogsaccount;
 	private String catdogAccountString;
 	private Account edsaccount;
@@ -28,6 +31,7 @@ public class AccountServiceTest {
 	
 	@Before 
 	public void setup() {
+		jsonutil = new JSONUtil();
 		repo = new AccountMapRepository();
 		catdogsaccount = new Account("Cat", "Dog", 1234L);
 		catdogAccountString = jsonutil.getJSONForObject(catdogsaccount);
@@ -41,7 +45,7 @@ public class AccountServiceTest {
 		
 		
 	}
-	
+	@Ignore
 	@Test
 	public void addAccountTest() {
 		
@@ -53,7 +57,7 @@ public class AccountServiceTest {
 		
 		
 	}
-	
+	@Ignore
 	@Test
 	public void add2AccountTest() {
 		
@@ -62,7 +66,7 @@ public class AccountServiceTest {
 		repo.createAccount(edsAccountString);
 		assertEquals("accounts not added", 2, repo.getRepoSize());
 	}
-
+	@Ignore
 	@Test
 	public void removeAccountTest() {
 		repo.createAccount(edsAccountString);
@@ -72,7 +76,7 @@ public class AccountServiceTest {
 		
 		 
 	}
-	
+	@Ignore
 	@Test
 	public void remove2AccountTest() {
 		
@@ -84,7 +88,7 @@ public class AccountServiceTest {
 		
 		
 	}
-	
+	@Ignore
 	@Test
 	public void remove2AccountTestAnd1ThatDoesntExist() {
 		
@@ -111,13 +115,13 @@ public class AccountServiceTest {
 	public void accountConversionToJSONTest() {
 		
 	}
-
+	@Ignore
 	@Test
 	public void getCountForFirstNamesInAccountWhenZeroOccurances() {
 		assertEquals("count is not 0", 0, repo.firstNameCount("Bob"));
 		
 	}
-	
+	@Ignore
 	@Test
 	public void getCountForFirstNamesInAccountWhenOne() {
 		repo.createAccount(edsAccountString);
@@ -125,7 +129,7 @@ public class AccountServiceTest {
 		assertEquals("count should be 1", 1, repo.firstNameCount("Bob"));
 		
 	}
-
+	@Ignore
 	@Test
 	public void getCountForFirstNamesInAccountWhenMult() {
 		repo.createAccount(bob1sAccountString);

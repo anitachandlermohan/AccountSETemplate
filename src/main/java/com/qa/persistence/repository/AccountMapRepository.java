@@ -13,11 +13,11 @@ import com.qa.persistence.domain.Account;
 import util.JSONUtil;
 @Alternative
 public class AccountMapRepository implements AccountRepository{
-	@Inject
-	private JSONUtil jsonutil; 
+	
 	Map<Long, Account> accountMap = new HashMap<>();
 	
-	
+	@Inject
+	private JSONUtil jsonutil; 
 	public String getAllAccounts() {
 		String accounts = "";
 		for(Long accountNumber : accountMap.keySet()) {
