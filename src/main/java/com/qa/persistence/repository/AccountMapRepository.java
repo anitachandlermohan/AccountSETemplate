@@ -5,12 +5,16 @@ import java.util.HashMap;
 
 import java.util.Map;
 
+import javax.enterprise.inject.Alternative;
+import javax.inject.Inject;
+
 import com.qa.persistence.domain.Account;
 
 import util.JSONUtil;
-
+@Alternative
 public class AccountMapRepository implements AccountRepository{
-	JSONUtil jsonutil = new JSONUtil();
+	@Inject
+	private JSONUtil jsonutil; 
 	Map<Long, Account> accountMap = new HashMap<>();
 	
 	
