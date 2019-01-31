@@ -9,6 +9,10 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.runners.MockitoJUnitRunner;
 
 import com.qa.persistence.domain.Account;
 import com.qa.persistence.repository.AccountMapRepository;
@@ -16,6 +20,7 @@ import com.qa.persistence.repository.AccountMapRepository;
 import util.JSONUtil;
 
 public class AccountServiceTest {
+
 	private AccountMapRepository repo;
 	private JSONUtil jsonutil;
 	private Account catdogsaccount;

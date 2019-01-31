@@ -17,7 +17,9 @@ public class Account{
 	private String lastName;
 	@Column
 	private Long accountNumber;
-	
+	public Account() {
+		
+	}
 	public Account(String firstname, String lastname, Long accountNumber) {
 	this.firstName = firstname;
 	this.lastName = lastname;
