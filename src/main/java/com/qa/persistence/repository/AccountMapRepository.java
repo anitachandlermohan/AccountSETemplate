@@ -6,16 +6,20 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.enterprise.inject.Alternative;
+import javax.inject.Inject;
+
+
 
 import com.qa.persistence.domain.Account;
 
 import util.JSONUtil;
 @Alternative
 public class AccountMapRepository implements AccountRepository{
-	JSONUtil jsonutil = new JSONUtil();
+	
 	Map<Long, Account> accountMap = new HashMap<>();
 	
-	
+	@Inject
+	private JSONUtil jsonutil; 
 	public String getAllAccounts() {
 		String accounts = "";
 		for(Long accountNumber : accountMap.keySet()) {
